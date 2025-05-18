@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time AI Tenant Screening Assistant</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Real-Time AI Tenant Screening Assistant</h1>
+            <div class="status-bar">
+                <div class="status-indicator">
+                    <span id="status-text">Ready</span>
+                    <span id="status-light" class="status-light"></span>
+                </div>
+                <div class="api-status">
+                    <span id="api-status">API: Not Connected</span>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="control-panel">
+                <div class="audio-controls">
+                    <button id="start-btn" class="primary-btn">Start Call</button>
+                    <button id="stop-btn" class="secondary-btn" disabled>End Call</button>
+                    <div class="audio-meter">
+                        <div id="volume-meter" class="volume-meter"></div>
+                    </div>
+                </div>
+                <div class="settings">
+                    <button id="settings-btn" class="icon-btn">⚙️</button>
+                </div>
+            </section>
+
+            <section class="content-area">
+                <div class="transcription-panel">
+                    <h2>Live Transcription</h2>
+                    <div id="transcription" class="transcription-content"></div>
+                </div>
+                <div class="suggestions-panel">
+                    <h2>AI Suggestions</h2>
+                    <div id="suggestions" class="suggestions-content"></div>
+                </div>
+            </section>
+
+            <section class="knowledge-base">
+                <h2>Knowledge Base</h2>
+                <div class="upload-area">
+                    <label for="file-upload" class="custom-file-upload">
+                        Upload Documents
+                    </label>
+                    <input id="file-upload" type="file" multiple accept=".pdf,.doc,.docx,.csv,.json,.jpg,.jpeg,.png">
+                    <div id="file-list" class="file-list"></div>
+                </div>
+            </section>
+
+            <section class="summary-panel hidden" id="summary-section">
+                <h2>Call Summary</h2>
+                <div id="summary-content" class="summary-content"></div>
+                <button id="export-btn" class="secondary-btn">Export Summary</button>
+            </section>
+        </main>
+
+        <div id="settings-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h2>Settings</h2>
+                <div class="settings-form">
+                    <div class="form-group">
+                        <label for="api-key">OpenAI API Key:</label>
+                        <input type="password" id="api-key" placeholder="Enter your OpenAI API key">
+                    </div>
+                    <div class="form-group">
+                        <label for="model-selection">AI Model:</label>
+                        <select id="model-selection">
+                            <option value="gpt-4o">GPT-4o (Recommended)</option>
+                            <option value="gpt-4">GPT-4</option>
+                            <option value="gpt-3.5-turbo">GPT-3.5 Turbo (Faster)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Transcription Speed:</label>
+                        <div class="radio-group">
+                            <input type="radio" id="speed-fast" name="transcription-speed" value="fast" checked>
+                            <label for="speed-fast">Fast (Lower Accuracy)</label>
+                            <input type="radio" id="speed-balanced" name="transcription-speed" value="balanced">
+                            <label for="speed-balanced">Balanced</label>
+                            <input type="radio" id="speed-accurate" name="transcription-speed" value="accurate">
+                            <label for="speed-accurate">Accurate (Slower)</label>
+                        </div>
+                    </div>
+                    <button id="save-settings" class="primary-btn">Save Settings</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/transcription.js"></script>
+    <script src="js/analysis.js"></script>
+    <script src="js/knowledge.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
